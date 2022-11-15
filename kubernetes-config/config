@@ -1,23 +1,65 @@
 apiVersion: v1
 clusters:
 - cluster:
+    certificate-authority: /home/lifecycle/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Thu, 10 Nov 2022 10:02:24 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: cluster_info
+    server: https://192.168.67.2:8443
+  name: ejercicio
+- cluster:
+    certificate-authority: /home/lifecycle/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Tue, 08 Nov 2022 16:21:06 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: cluster_info
+    server: https://192.168.49.2:8443
+  name: jenkins
+- cluster:
     certificate-authority: ca.crt
     extensions:
     - extension:
-        last-update: Thu, 01 Sep 2022 10:23:54 CEST
+        last-update: Tue, 15 Nov 2022 09:19:46 CET
         provider: minikube.sigs.k8s.io
-        version: v1.26.1
+        version: v1.28.0
       name: cluster_info
-    server: https://192.168.76.2:8443
+    server: https://192.168.58.2:8443
   name: minikube
 contexts:
+- context:
+    cluster: ejercicio
+    extensions:
+    - extension:
+        last-update: Thu, 10 Nov 2022 10:02:24 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: context_info
+    namespace: default
+    user: ejercicio
+  name: ejercicio
+- context:
+    cluster: jenkins
+    extensions:
+    - extension:
+        last-update: Tue, 08 Nov 2022 16:21:06 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: context_info
+    namespace: default
+    user: jenkins
+  name: jenkins
 - context:
     cluster: minikube
     extensions:
     - extension:
-        last-update: Thu, 01 Sep 2022 10:23:54 CEST
+        last-update: Tue, 15 Nov 2022 09:19:46 CET
         provider: minikube.sigs.k8s.io
-        version: v1.26.1
+        version: v1.28.0
       name: context_info
     namespace: default
     user: minikube
@@ -26,6 +68,14 @@ current-context: minikube
 kind: Config
 preferences: {}
 users:
+- name: minikube
+  user:
+    client-certificate: /home/lifecycle/.minikube/profiles/ejercicio/client.crt
+    client-key: /home/lifecycle/.minikube/profiles/ejercicio/client.key
+- name: jenkins
+  user:
+    client-certificate: /home/lifecycle/.minikube/profiles/jenkins/client.crt
+    client-key: /home/lifecycle/.minikube/profiles/jenkins/client.key
 - name: minikube
   user:
     client-certificate: minikube/client.crt
