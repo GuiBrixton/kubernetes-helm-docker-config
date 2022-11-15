@@ -1,7 +1,7 @@
 apiVersion: v1
 clusters:
 - cluster:
-    certificate-authority: ca.crt
+    certificate-authority: /home/lifecycle/.minikube/ca.crt
     extensions:
     - extension:
         last-update: Thu, 10 Nov 2022 10:02:24 CET
@@ -10,6 +10,16 @@ clusters:
       name: cluster_info
     server: https://192.168.67.2:8443
   name: ejercicio
+- cluster:
+    certificate-authority: ca.crt
+    extensions:
+    - extension:
+        last-update: Tue, 15 Nov 2022 13:49:15 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: cluster_info
+    server: https://192.168.76.2:8443
+  name: javaprofile
 - cluster:
     certificate-authority: /home/lifecycle/.minikube/ca.crt
     extensions:
@@ -20,16 +30,6 @@ clusters:
       name: cluster_info
     server: https://192.168.49.2:8443
   name: jenkins
-- cluster:
-    certificate-authority: ca.crt
-    extensions:
-    - extension:
-        last-update: Tue, 15 Nov 2022 09:19:46 CET
-        provider: minikube.sigs.k8s.io
-        version: v1.28.0
-      name: cluster_info
-    server: https://192.168.58.2:8443
-  name: minikube
 contexts:
 - context:
     cluster: ejercicio
@@ -43,6 +43,17 @@ contexts:
     user: ejercicio
   name: ejercicio
 - context:
+    cluster: javaprofile
+    extensions:
+    - extension:
+        last-update: Tue, 15 Nov 2022 13:49:15 CET
+        provider: minikube.sigs.k8s.io
+        version: v1.28.0
+      name: context_info
+    namespace: default
+    user: javaprofile
+  name: javaprofile
+- context:
     cluster: jenkins
     extensions:
     - extension:
@@ -53,18 +64,7 @@ contexts:
     namespace: default
     user: jenkins
   name: jenkins
-- context:
-    cluster: minikube
-    extensions:
-    - extension:
-        last-update: Tue, 15 Nov 2022 09:19:46 CET
-        provider: minikube.sigs.k8s.io
-        version: v1.28.0
-      name: context_info
-    namespace: default
-    user: minikube
-  name: minikube
-current-context: minikube
+current-context: javaprofile
 kind: Config
 preferences: {}
 users:
@@ -72,11 +72,11 @@ users:
   user:
     client-certificate: /home/lifecycle/.minikube/profiles/ejercicio/client.crt
     client-key: /home/lifecycle/.minikube/profiles/ejercicio/client.key
+- name: javaprofile
+  user:
+    client-certificate: minikube/client.crt
+    client-key: minikube/client.key
 - name: jenkins
   user:
     client-certificate: /home/lifecycle/.minikube/profiles/jenkins/client.crt
     client-key: /home/lifecycle/.minikube/profiles/jenkins/client.key
-- name: minikube
-  user:
-    client-certificate: minikube/client.crt
-    client-key: minikube/client.key
