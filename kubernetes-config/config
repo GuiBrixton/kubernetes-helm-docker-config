@@ -68,7 +68,7 @@ current-context: minikube
 kind: Config
 preferences: {}
 users:
-- name: minikube
+- name: ejercicio
   user:
     client-certificate: /home/lifecycle/.minikube/profiles/ejercicio/client.crt
     client-key: /home/lifecycle/.minikube/profiles/ejercicio/client.key
