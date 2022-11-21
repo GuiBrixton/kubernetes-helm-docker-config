@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-app
-          image: "acavaleiro/backend-demo:latest"
+          image: "acavaleiro/spring-boot-app:0.0.1"
           imagePullPolicy: Always
   replicas: 1
   selector:
