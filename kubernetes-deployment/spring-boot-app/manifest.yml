@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-app
-          image: "acavaleiro/spring-boot-app:0.0.1"
+          image: "acavaleiro/jenkins-nodo-js-bootcamp:1.0"
           imagePullPolicy: Always
   replicas: 1
   selector:
